@@ -71,10 +71,10 @@ export class IcelomSolver {
 
             for (let x = 1; x < 2 * cols; x += 2) {
                 for (let y = 1; y < 2 * rows; y += 2) {
-                    if (x != 1) {
+                    if (x !== 1) {
                         new BorderInfo(this, x - 1, y);
                     }
-                    if (y != 1) {
+                    if (y !== 1) {
                         new BorderInfo(this, x, y - 1);
                     }
                 }
