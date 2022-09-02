@@ -1,4 +1,4 @@
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 import {Icelom, IcelomBoard} from "../../pzpr-copy-paste/variety/icelom";
 import {IcelomBoardComponent} from "../IcelomBoard";
 import {IcelomSolver} from "../../logic/IcelomSolver";
@@ -15,6 +15,8 @@ export const IcelomByStrOnly = ({hash, setHash}: Props) => {
     const str = hash[0];
 
     const setStr = (str: string) => setHash(str);
+
+    const [inputStr, setInputStr] = useState(str);
 
     const {solvers, time} = useMemo(
         () => {
@@ -41,7 +43,13 @@ export const IcelomByStrOnly = ({hash, setHash}: Props) => {
 
     return <div>
         <div style={{marginBottom: "1em"}}>
-            String: <input type={"text"} value={str} onChange={({target: {value}}) => setStr(value)}/>
+            <form onSubmit={(ev) => {
+                ev.preventDefault();
+                setStr(inputStr);
+            }}>
+                String: <input type={"text"} value={inputStr} onChange={({target: {value}}) => setInputStr(value)}/>{" "}
+                <button type={"submit"} disabled={str === inputStr}>Search</button>
+            </form>
         </div>
 
         <div style={{marginBottom: "1em"}}>Found {solvers.length} puzzle(s) in {time} seconds</div>

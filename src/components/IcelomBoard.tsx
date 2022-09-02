@@ -2,7 +2,7 @@ import {Icelom} from "../pzpr-copy-paste/variety/icelom";
 import {cellSize} from "./constants";
 import {IcelomLineComponent} from "./IcelomLine";
 import {IcelomSolver} from "../logic/IcelomSolver";
-import {PropsWithChildren} from "react";
+import {memo, PropsWithChildren} from "react";
 import {Position} from "../pzpr-copy-paste/position";
 
 interface IcelomBoardProps {
@@ -20,7 +20,7 @@ const lineColors = [
     "#888",
 ];
 
-export const IcelomBoardComponent = (
+export const IcelomBoardComponent = memo((
     {
         icelom: {board: {cols: width, rows: height, cell}},
         solver,
@@ -55,7 +55,7 @@ export const IcelomBoardComponent = (
             </>}
         </div>
     </div>;
-};
+});
 
 interface IcelomCellProps {
     position?: Position;
