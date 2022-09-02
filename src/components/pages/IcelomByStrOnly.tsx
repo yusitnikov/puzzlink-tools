@@ -31,6 +31,7 @@ export const IcelomByStrOnly = ({hash, setHash}: Props) => {
                 .sort(
                     (a, b) =>
                         ((a.isLoopFinished() ? 0 : 1) - (b.isLoopFinished() ? 0 : 1)) ||
+                        (a.emptyCellsCount - b.emptyCellsCount) ||
                         (a.icelom.board.rows * a.icelom.board.cols - b.icelom.board.rows * b.icelom.board.cols)
                 );
             return {
